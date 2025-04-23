@@ -10,6 +10,46 @@ function App() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
 
+  //Load Facemesh 
+
+  const runFacemesh = async () => {
+    const net = await facemesh.load({
+      inputResolution: {
+        width: 1300,
+        height: 600,
+      }, scale: 0.8
+
+    }
+    )
+  }
+
+  //Detect Function
+  const detect = async (net) => {
+    if (
+      typeof webcamRef.current !== "undefined" &&
+      webcamRef.current !== null &&
+      webcamRef.current.video.readState === 4
+    ) {
+      //Get Video Properties
+      const video = webcamRef.current.video;
+      const videoWidth = webcamRef.current.video.videoWidth;
+      const videoHeight = webcamRef.current.video.videoHeight;
+
+      //Set Video Width
+      webcamRef.current.video.width = videoWidth;
+      webcamRef.current.video.height = videoHeight;
+
+      //Set Canvas Width
+      canvasRef.current.width = videoWidth;
+      canvasRef.current.height = videoHeight;
+
+      //Make Detections
+      const face = await net.estimateFaces(video);
+      console.log(face)
+
+    }
+  }
+
   return (
     <div className="App">
       <div
@@ -46,8 +86,8 @@ function App() {
             left: '50%',
             transform: 'translate(-50%, -50%)',
             zIndex: 10,
-            width: '70vw',
-            height: '600px',
+            width: '1300',
+            height: '600',
             marginTop: '2.5rem',
           }
         } />
@@ -62,8 +102,8 @@ function App() {
             left: '50%',
             transform: 'translate(-50%, -50%)',
             zIndex: 9,
-            width: '70vw',
-            height: '600px'
+            width: '1300',
+            height: '600'
           }
         }
       />
