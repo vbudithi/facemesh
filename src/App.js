@@ -18,17 +18,18 @@ function App() {
         width: 1300,
         height: 600,
       }, scale: 0.8
-
-    }
-    )
-  }
+    });
+    setInterval(() => {
+      detect(net)
+    }, 100)
+  };
 
   //Detect Function
   const detect = async (net) => {
     if (
       typeof webcamRef.current !== "undefined" &&
       webcamRef.current !== null &&
-      webcamRef.current.video.readState === 4
+      webcamRef.current.video.readyState === 4
     ) {
       //Get Video Properties
       const video = webcamRef.current.video;
@@ -50,6 +51,7 @@ function App() {
     }
   }
 
+  runFacemesh();
   return (
     <div className="App">
       <div
