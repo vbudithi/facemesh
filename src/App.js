@@ -44,7 +44,6 @@ function App() {
 
       // Make Detections
       const face = await net.estimateFaces({ input: video });
-      console.log(face);
 
       // Get canvas context
       const ctx = canvasRef.current.getContext("2d");
