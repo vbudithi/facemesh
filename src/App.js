@@ -1,22 +1,14 @@
-// 1. Install dependencies DONE
-// 2. Import dependencies DONE
-// 3. Setup webcam and canvas DONE
-// 4. Define references to those DONE
-// 5. Load posenet DONE
-// 6. Detect function DONE
-// 7. Drawing utilities from tensorflow DONE
-// 8. Draw functions DONE
-
 // Face Mesh - https://github.com/tensorflow/tfjs-models/tree/master/facemesh
 
 import React, { useRef, useEffect } from "react";
 import "./App.css";
-import * as tf from "@tensorflow/tfjs";
+
 // OLD MODEL
 //import * as facemesh from "@tensorflow-models/facemesh";
 
 // NEW MODEL
 import * as faceLandmarksDetection from "@tensorflow-models/face-landmarks-detection";
+import * as tf from "@tensorflow/tfjs";
 import Webcam from "react-webcam";
 import { drawMesh } from "./utilities";
 
@@ -24,15 +16,12 @@ function App() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
 
-
   const runFacemesh = async () => {
     const net = await faceLandmarksDetection.load(faceLandmarksDetection.SupportedPackages.mediapipeFacemesh);
     setInterval(() => {
-      detect(net)
-
-    }, 10)
+      detect(net);
+    }, 10);
   }
-
 
   const detect = async (net) => {
     if (
@@ -83,7 +72,7 @@ function App() {
           👁️ Real-Time FaceMesh Detection
         </h2>
         <p style={{ marginTop: '0.5rem' }}>
-          Built using TensorFlow.js and FaceMesh to detect facial landmarks in real-time using webcam.
+          Built with TensorFlow.js and FaceMesh to detect facial landmarks in real-time using the webcam.
         </p>
       </div>
 
@@ -103,7 +92,6 @@ function App() {
               marginTop: '2.5rem',
             }
           } />
-
         <canvas ref={canvasRef}
           style={
             {
