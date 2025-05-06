@@ -16,12 +16,18 @@ function App() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
 
-  const runFacemesh = async () => {
-    const net = await faceLandmarksDetection.load(faceLandmarksDetection.SupportedPackages.mediapipeFacemesh);
-    setInterval(() => {
-      detect(net);
-    }, 10);
-  }
+  useEffect(() => {
+    const runFacemesh = async () => {
+      const net = await faceLandmarksDetection.load(
+        faceLandmarksDetection.SupportedPackages.mediapipeFacemesh
+      );
+      setInterval(() => {
+        detect(net);
+      }, 10);
+    };
+
+    runFacemesh();
+  }, []);
 
   const detect = async (net) => {
     if (
@@ -51,7 +57,6 @@ function App() {
     }
   };
 
-  useEffect(() => { runFacemesh() }, []);
 
   return (
     <div className="App">

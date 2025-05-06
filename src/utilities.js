@@ -2658,6 +2658,7 @@ const drawPath = (ctx, points, closePath) => {
     ctx.stroke(region);
 
 }
+
 // Drawing Mesh
 export const drawMesh = (predictions, ctx) => {
     if (predictions.length > 0) {
