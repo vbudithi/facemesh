@@ -22,7 +22,7 @@ To install the required dependencies, run:
 npm install @tensorflow/tfjs @tensorflow-models/facemesh react-webcam
 
 ```
-✨ Features:
+## ✨ Features:
 
 1. Real-time face mesh detection in the browser
 
