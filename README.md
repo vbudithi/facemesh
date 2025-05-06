@@ -31,3 +31,8 @@ npm install @tensorflow/tfjs @tensorflow-models/facemesh react-webcam
 3. TensorFlow.js powered — no backend needed
 
 4. Built with React and react-webcam
+
+
+## If you ran into a OpenSSL Issue, use this command.
+
+```set NODE_OPTIONS=--openssl-legacy-provider```
